@@ -18,8 +18,8 @@ void validacion_tablero(int &alto, int &ancho){
 
 uint8_t** Tablero(int alto, int ancho) {
     uint8_t** tablero = new uint8_t*[alto];
-    for(int i = 0; i < alto; i++) {
-        tablero[i] = new uint8_t[ancho/8]();
+    for(int cont= 0; cont < alto; cont++) {
+        tablero[cont] = new uint8_t[ancho/8]();
     }
     return tablero;
 }
