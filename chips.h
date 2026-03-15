@@ -1,5 +1,5 @@
 #ifndef CHIPS_H
-#define
+#define CHIPS_H
 
 //Codificamos aquí
 
