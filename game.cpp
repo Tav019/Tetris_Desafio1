@@ -1,3 +1,3 @@
 #include "game.h"
-#include "chips.h"
+#include "pieces.h"
 #include "board.h"

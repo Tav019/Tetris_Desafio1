@@ -5,11 +5,11 @@ CONFIG -= qt
 
 SOURCES += \
         board.cpp \
-        chips.cpp \
         game.cpp \
-        main.cpp
+        main.cpp \
+        pieces.cpp
 
 HEADERS += \
     board.h \
-    chips.h \
-    game.h
+    game.h \
+    pieces.h
