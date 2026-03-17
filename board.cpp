@@ -33,7 +33,7 @@ void liberar_tablero(uint8_t** tablero, int alto) {
     delete[] tablero;
 }
 
-void filaLlena(uint8_t* fila, int bytesFila){
+int filaLlena(uint8_t* fila, int bytesFila){
     for(int b = 0; b<bytesFila; b++){
         if(fila[b] != 0xFF)
             return 0;
@@ -46,7 +46,7 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
     int eliminadas = 0;
 
     for(int i = alto - 1; i>=0;i--){
-        if(filaLlena(tablero[i], bytesFila)){
+        if(filaLlena(tablero[i], bytesFilas)){
             delete[] tablero[i];
             eliminadas++;
 
@@ -55,7 +55,7 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
             tablero[j] = tablero[j-1];
         }
 
-        tablero[0] = new uint8_t[bytesFila]();
+        tablero[0] = new uint8_t[bytesFilas]();
 
         i++;
         }

@@ -7,7 +7,7 @@ void validacion_tablero(int &alto,int &ancho);
 uint8_t** crearTablero(int ancho, int alto);
 
 
-void imprimir_tablero(unit8_t tablero, int alto,int ancho, uint8_t* pieza, int piezaX, int piezaY, int piezaFila);
+void imprimir_tablero(uint8_t** tablero, int alto,int ancho, uint8_t* pieza, int piezaX, int piezaY, int piezaFila);
 
 void liberar_tablero(uint8_t** tablero, int algo);
 
