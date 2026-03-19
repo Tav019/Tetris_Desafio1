@@ -51,7 +51,7 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
             eliminadas++;
 
 
-        for(int j = 1; j>0;j--){
+        for(int j = i; j>0;j--){
             tablero[j] = tablero[j-1];
         }
 
@@ -66,19 +66,20 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
 void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
                       uint8_t* piezaForma, int piezaX, int piezaY, int piezaFilas){
 
-    int bytesFila = ancho/8;
-    for(int fila = 0; fia<alto; fila++){
+    //int bytesFila = ancho/8;
+    for(int fila = 0; fila<alto; fila++){
         cout << "|";
 
         for(int col = 0; col<ancho; col++){
             int celda = 0;
             int filaPieza = fila - piezaY;
 
-            if (filaPieza >= 0 && filaPiza < piezaFilas){
+            if (filaPieza >= 0 && filaPieza < piezaFilas){
                 int colPieza = col - piezaX;
-                if (colPieza >= 0 && colpieza < 4){
-                    celda =(piezaForma[filaPieza] >> (7-colPieza) & 1);
+                if (colPieza >= 0 && colPieza < 4){
+                    celda =(piezaForma[filaPieza] >> (7-colPieza)) & 1;
                 }
+            }
             if(!celda){
                 int byte = col/8;
                 int bit = 7-(col%8);
@@ -86,15 +87,18 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
             }
 
             cout <<(celda ? "#" : ".");
-        }
+
             cout <<"|\n";
 
 
     }
+    }
+
 
     cout << "+";
     for(int c = 0; c < ancho; c++) cout << "-";
     cout <<"+\n";
     cout << "Accion [A]Izq [D]Der [S]Bajar [W]Rotar [Q]Salir ";
+}
 
 

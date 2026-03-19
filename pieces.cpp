@@ -2,87 +2,83 @@
 #include <iostream>
 using namespace std;
 
+int getBit(uint8_t* pieza, int fila, int col) {
+    return (pieza[fila] >> (7 - col)) & 1;
+}
+
+void setBit(uint8_t* pieza, int fila, int col) {
+    pieza[fila] |= (0x80 >> col);
+}
 
 uint8_t* generarPieza(int &filas) {
     int num = rand() % 6;
-    uint8_t* pieza;
+    uint8_t* pieza = new uint8_t[3];
+    filas = 3;
 
     switch(num) {
     case 0:  // O
-        filas = 2;
-        pieza = new uint8_t[2];
-        pieza[0] = 0b00110000;
-        pieza[1] = 0b00110000;
+        pieza[0] = 0b11000000; // ##
+        pieza[1] = 0b11000000; // ##
+        pieza[2] = 0b00000000;
         break;
 
     case 1:  // T
-        filas = 3;
-        pieza = new uint8_t[3];
-        pieza[0] = 0b00010000;
-        pieza[1] = 0b00111000;
+        pieza[0] = 0b11100000; //  ###
+        pieza[1] = 0b01000000; //   #
         pieza[2] = 0b00000000;
         break;
 
     case 2:  // S
-        filas = 3;
-        pieza = new uint8_t[3];
-        pieza[0] = 0b00011000;
-        pieza[1] = 0b00110000;
+        pieza[0] = 0b01100000; //  ##
+        pieza[1] = 0b11000000; // ##
         pieza[2] = 0b00000000;
         break;
 
     case 3:  // Z
-        filas = 3;
-        pieza = new uint8_t[3];
-        pieza[0] = 0b00110000;
-        pieza[1] = 0b00011000;
+        pieza[0] = 0b11000000; // ##
+        pieza[1] = 0b01100000; //  ##
         pieza[2] = 0b00000000;
         break;
 
     case 4:  // J
-        filas = 3;
-        pieza = new uint8_t[3];
-        pieza[0] = 0b00100000;
-        pieza[1] = 0b00111000;
+        pieza[0] = 0b10000000; //  #
+        pieza[1] = 0b11100000; //  ###
         pieza[2] = 0b00000000;
         break;
 
     default:  // L
-        filas = 3;
-        pieza = new uint8_t[3];
-        pieza[0] = 0b00001000;
-        pieza[1] = 0b00111000;
+        pieza[0] = 0b00100000; //   #
+        pieza[1] = 0b11100000; // ###
         pieza[2] = 0b00000000;
         break;
     }
     return pieza;
 }
 
-uint8_t* rotacion(uint8_t* pieza, int filas) {
-    int pivote = 3;
+uint8_t* rotacion(uint8_t* pieza, int tipo) {
 
-    if(filas == 2) {
-        uint8_t* copia = new uint8_t[2];
+    //int pivote = 3;
+
+    if(tipo == 0) {
+        uint8_t* copia = new uint8_t[3];
         copia[0] = pieza[0];
         copia[1] = pieza[1];
+        copia[2] = pieza[2];
         return copia;
     }
 
-    uint8_t* rotada = new uint8_t[filas]();
+    uint8_t* rotada = new uint8_t[3]();
 
-    for(int fila = 0; fila < filas; fila++) {
-        for(int col = 0; col < 8; col++) {
-            int bit = (pieza[fila] >> (7 - col)) & 1;
-            if(bit) {
-                int nuevaFila = col - pivote + (filas / 2);
-                int nuevaCol  = pivote - fila + (filas / 2);
-                if(nuevaFila >= 0 && nuevaFila < filas &&
-                    nuevaCol  >= 0 && nuevaCol  < 8) {
-                    rotada[nuevaFila] |= (0x80 >> nuevaCol);
+    for(int fila = 0; fila < 3; fila++) {
+        for(int col = 0; col < 3; col++) {
+            if (getBit(pieza, fila, col)) {
+                int nuevaFila = col;
+                int nuevaCol  = 2 - fila;
+                setBit(rotada, nuevaFila, nuevaCol);
                 }
             }
         }
-    }
+
     return rotada;
 }
 
