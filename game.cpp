@@ -54,3 +54,23 @@ int bajar(uint8_t** tablero, int alto, int ancho,
     }
     else return 0;
 }
+
+
+void fijarPieza(uint8_t** tablero, uint8_t* pieza,
+                int filas, int posY, int posX) {
+    for(int fila = 0; fila < filas; fila++) {
+        int filaTablero = posY + fila;
+        if(filaTablero >= 0) {
+            tablero[filaTablero][posX] |= pieza[fila];
+        }
+    }
+}
+
+
+int gameOver(uint8_t** tablero, uint8_t* pieza,
+             int filas, int posX) {
+    for(int fila = 0; fila < filas; fila++) {
+        if(tablero[0][posX] & pieza[fila]) return 1;
+    }
+    return 0;
+}

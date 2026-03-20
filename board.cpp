@@ -42,11 +42,11 @@ int filaLlena(uint8_t* fila, int bytesFila){
 }
 
 int limpiarFilas(uint8_t **tablero, int alto, int ancho){
-    int bytesFilas = ancho/8;
+    int bytesFila = ancho/8;
     int eliminadas = 0;
 
     for(int i = alto - 1; i>=0;i--){
-        if(filaLlena(tablero[i], bytesFilas)){
+        if(filaLlena(tablero[i], bytesFila)){
             delete[] tablero[i];
             eliminadas++;
 
@@ -55,7 +55,7 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
             tablero[j] = tablero[j-1];
         }
 
-        tablero[0] = new uint8_t[bytesFilas]();
+        tablero[0] = new uint8_t[bytesFila]();
 
         i++;
         }
@@ -91,7 +91,7 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
             cout <<"|\n";
 
 
-    }
+        }
     }
 
 
@@ -100,5 +100,3 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
     cout <<"+\n";
     cout << "Accion [A]Izq [D]Der [S]Bajar [W]Rotar [Q]Salir ";
 }
-
-
