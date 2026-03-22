@@ -10,12 +10,13 @@ void setBit(uint8_t* pieza, int fila, int col) {
     pieza[fila] |= (0x80 >> col);
 }
 
-uint8_t* generarPieza(int &filas) {
+uint8_t* generarPieza(int &filas, int &tipo) {
     int num = rand() % 6;
-    uint8_t* pieza = new uint8_t[3];
+    tipo = num;
+    uint8_t* pieza = new uint8_t[3]();
     filas = 3;
 
-    switch(num) {
+    switch(tipo) {
     case 0:  // O
         pieza[0] = 0b11000000; // ##
         pieza[1] = 0b11000000; // ##
@@ -60,13 +61,13 @@ uint8_t* rotacion(uint8_t* pieza, int tipo) {
     //int pivote = 3;
 
     if(tipo == 0) {
-        uint8_t* copia = new uint8_t[3];
+        uint8_t* copia = new uint8_t[3]();
         copia[0] = pieza[0];
         copia[1] = pieza[1];
         copia[2] = pieza[2];
         return copia;
     }
-
+    else{
     uint8_t* rotada = new uint8_t[3]();
 
     for(int fila = 0; fila < 3; fila++) {
@@ -80,6 +81,7 @@ uint8_t* rotacion(uint8_t* pieza, int tipo) {
         }
 
     return rotada;
+    }
 }
 
 void liberarPieza(uint8_t* pieza) {

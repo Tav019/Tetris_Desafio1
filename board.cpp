@@ -4,14 +4,24 @@ using namespace std;
 
 void validacion_tablero(int &alto, int &ancho){
 
+
     do {
         cout << "Ingrese el alto (minimo 8): ";
+
         cin >> alto;
+        std::cout << "Leiste alto: " << alto << std::endl;
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+
+
     } while(alto < 8);
 
     do {
         cout << "Ingrese el ancho (multiplo de 8, minimo 8): ";
         cin >> ancho;
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+
     } while(ancho<8 || ancho%8 != 0);
 
 }
@@ -76,7 +86,7 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
 
             if (filaPieza >= 0 && filaPieza < piezaFilas){
                 int colPieza = col - piezaX;
-                if (colPieza >= 0 && colPieza < 4){
+                if (colPieza >= 0 && colPieza < 3){
                     celda =(piezaForma[filaPieza] >> (7-colPieza)) & 1;
                 }
             }
@@ -88,10 +98,11 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
 
             cout <<(celda ? "#" : ".");
 
-            cout <<"|\n";
+
 
 
     }
+        cout <<"|\n";
     }
 
 
