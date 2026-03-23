@@ -18,38 +18,38 @@ uint8_t* generarPieza(int &filas, int &tipo) {
 
     switch(tipo) {
     case 0:  // O
-        pieza[0] = 0b11000000; // ##
-        pieza[1] = 0b11000000; // ##
+        pieza[0] = 0b11000000;
+        pieza[1] = 0b11000000;
         pieza[2] = 0b00000000;
         break;
 
     case 1:  // T
-        pieza[0] = 0b11100000; //  ###
-        pieza[1] = 0b01000000; //   #
+        pieza[0] = 0b11100000;
+        pieza[1] = 0b01000000;
         pieza[2] = 0b00000000;
         break;
 
     case 2:  // S
-        pieza[0] = 0b01100000; //  ##
-        pieza[1] = 0b11000000; // ##
+        pieza[0] = 0b01100000;
+        pieza[1] = 0b11000000;
         pieza[2] = 0b00000000;
         break;
 
     case 3:  // Z
-        pieza[0] = 0b11000000; // ##
-        pieza[1] = 0b01100000; //  ##
+        pieza[0] = 0b11000000;
+        pieza[1] = 0b01100000;
         pieza[2] = 0b00000000;
         break;
 
     case 4:  // J
-        pieza[0] = 0b10000000; //  #
-        pieza[1] = 0b11100000; //  ###
+        pieza[0] = 0b10000000;
+        pieza[1] = 0b11100000;
         pieza[2] = 0b00000000;
         break;
 
     default:  // L
-        pieza[0] = 0b00100000; //   #
-        pieza[1] = 0b11100000; // ###
+        pieza[0] = 0b00100000;
+        pieza[1] = 0b11100000;
         pieza[2] = 0b00000000;
         break;
     }
@@ -58,7 +58,6 @@ uint8_t* generarPieza(int &filas, int &tipo) {
 
 uint8_t* rotacion(uint8_t* pieza, int tipo) {
 
-    //int pivote = 3;
 
     if(tipo == 0) {
         uint8_t* copia = new uint8_t[3]();

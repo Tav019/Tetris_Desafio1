@@ -15,6 +15,7 @@ int filaLlena(uint8_t* fila, int bytesFila);
 
 int limpiarFilas(uint8_t** tablero, int alto, int ancho);
 
+int leerEntero(char mensaje[]);
 
 
-#endif // BOARD_H
+#endif

@@ -2,26 +2,48 @@
 #include <iostream>
 using namespace std;
 
+int leerEntero(char mensaje[]) {
+    char input[100];
+    int valido = 0;
+    int numero = 0;
+
+    while(!valido) {
+        cout << mensaje;
+        cin >> input;
+        valido = 1;
+        int i = 0;
+        while(input[i] != '\0') {
+            if(input[i] < '0' || input[i] > '9') {
+                valido = 0;
+            }
+            i++;
+        }
+        if(valido) {
+            numero = 0;
+            int j = 0;
+            while(input[j] != '\0') {
+                numero = numero * 10 + (input[j] - '0');
+                j++;
+            }
+        } else {
+            cout << "Entrada invalida. Ingrese un numero entero.\n";
+        }
+    }
+    return numero;
+}
+
+
+
+
 void validacion_tablero(int &alto, int &ancho){
 
 
     do {
-        cout << "Ingrese el alto (minimo 8): ";
-
-        cin >> alto;
-        std::cout << "Leiste alto: " << alto << std::endl;
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-
-
+        alto = leerEntero("Ingrese el alto (minimo 8): ");
     } while(alto < 8);
 
     do {
-        cout << "Ingrese el ancho (multiplo de 8, minimo 8): ";
-        cin >> ancho;
-        std::cin.clear();
-        std::cin.ignore(1000, '\n');
-
+        ancho = leerEntero("Ingrese el ancho (multiplo de 8, minimo 8): ");
     } while(ancho<8 || ancho%8 != 0);
 
 }
@@ -76,7 +98,6 @@ int limpiarFilas(uint8_t **tablero, int alto, int ancho){
 void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
                       uint8_t* piezaForma, int piezaX, int piezaY, int piezaFilas){
 
-    //int bytesFila = ancho/8;
     for(int fila = 0; fila<alto; fila++){
         cout << "|";
 
@@ -111,5 +132,4 @@ void imprimir_tablero(uint8_t** tablero,int alto,int ancho,
     cout <<"+\n";
     cout << "Accion [A]Izq [D]Der [S]Bajar [W]Rotar [Q]Salir ";
 }
-
 
